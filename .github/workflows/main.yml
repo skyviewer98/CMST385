@@ -1,0 +1,16 @@
+name: Deploy HTML Files to AppServieCMST385
+on:
+  push:
+    branches:
+      -main
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/chechout@master
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v1
+      with:
+        app-name: 'CMST385-sstewart112'
+        slot-name: 'production'
+        publish-profile: ${{ sectrets.AppServiceCMST385 }}
